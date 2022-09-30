@@ -1,9 +1,8 @@
 import express from "express";
+import {imageController} from "../controllers/image";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.send("Hello World 1");
-});
+router.get("/", imageController);
 
 export default router;
