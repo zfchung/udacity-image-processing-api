@@ -6,7 +6,8 @@ export interface IImage {
     height: number;
 }
 
-export async function getImage({fileName, width, height}: any) {
+export async function getImage({fileName, width, height}: IImage) {
+
     const newWidth = Number(width);
     const newHeight = Number(height);
 

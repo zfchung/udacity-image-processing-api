@@ -1,12 +1,16 @@
-import {Response, Request} from "express";
+import {Response} from "express";
 import {getImage} from "../../services/image";
+import {ContainerTypes, ValidatedRequest, ValidatedRequestSchema} from "express-joi-validation";
 
-export async function imageController(req: Request, res: Response) {
-    const input = {
-        fileName: req.query.fileName,
-        height: req.query.height,
-        width: req.query.width
+interface HelloRequestSchema extends ValidatedRequestSchema {
+    [ContainerTypes.Query]: {
+        fileName: string;
+        width: number;
+        height: number;
     }
-    const result = await getImage(input);
-    res.sendFile(result, {root: "src/data"});
+}
+
+export async function imageController(req: ValidatedRequest<HelloRequestSchema>, res: Response) {
+    const result = await getImage(req.query);
+    res.status(200).sendFile(result, {root: "src/data"});
 }
