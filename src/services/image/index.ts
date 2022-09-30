@@ -1,3 +1,5 @@
+import {readFileSync, writeFileSync} from "fs";
+import sharp from "sharp";
 
 export interface IImage {
     fileName: string;
@@ -5,6 +7,14 @@ export interface IImage {
     height: number;
 }
 
-export function getImage({fileName, width, height}: any){
+export async function getImage({fileName, width, height}: any) {
+    const newWidth = Number(width);
+    const newHeight = Number(height);
+
+    await sharp(`src/data/image/${fileName}.jpg`)
+        .resize(newWidth, newHeight)
+        .jpeg()
+        .toFile(`src/data/thumb/${fileName}.jpg`);
+
     return `image/${fileName}.jpg`;
 }
