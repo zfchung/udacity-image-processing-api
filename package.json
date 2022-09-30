@@ -1,0 +1,8 @@
+{
+  "name": "udacity-image-processing-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zfchung/udacity-image-processing-api.git",
+  "author": "ZF Chung (Zack) <zfchung1@gmail.com>",
+  "license": "MIT"
+}
