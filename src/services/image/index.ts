@@ -1,4 +1,3 @@
-import {readFileSync, writeFileSync} from "fs";
 import sharp from "sharp";
 
 export interface IImage {
@@ -16,5 +15,5 @@ export async function getImage({fileName, width, height}: any) {
         .jpeg()
         .toFile(`src/data/thumb/${fileName}.jpg`);
 
-    return `image/${fileName}.jpg`;
+    return `thumb/${fileName}.jpg`;
 }
