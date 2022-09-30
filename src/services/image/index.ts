@@ -12,14 +12,22 @@ export async function getImage({fileName, width, height}: IImage) {
     const newWidth = Number(width);
     const newHeight = Number(height);
 
-    if (fs.existsSync(`src/data/thumb/${fileName}.jpg`)) {
-        return `thumb/${fileName}.jpg`;
+    if (!fs.existsSync(`src/data/image/${fileName}.jpg`)) {
+        return {
+            status: 400,
+            result: `Image ${fileName} does not exist.`
+        }
     }
 
-    await sharp(`src/data/image/${fileName}.jpg`)
-        .resize(newWidth, newHeight)
-        .jpeg()
-        .toFile(`src/data/thumb/${fileName}.jpg`);
+    if (!fs.existsSync(`src/data/thumb/${fileName}.jpg`)) {
+        await sharp(`src/data/image/${fileName}.jpg`)
+            .resize(newWidth, newHeight)
+            .jpeg()
+            .toFile(`src/data/thumb/${fileName}.jpg`);
+    }
 
-    return `thumb/${fileName}.jpg`;
+    return {
+        status: 200,
+        result: `thumb/${fileName}.jpg`
+    };
 }

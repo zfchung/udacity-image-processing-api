@@ -11,6 +11,10 @@ interface HelloRequestSchema extends ValidatedRequestSchema {
 }
 
 export async function imageController(req: ValidatedRequest<HelloRequestSchema>, res: Response) {
-    const result = await getImage(req.query);
-    res.status(200).sendFile(result, {root: "src/data"});
+    const {status, result} = await getImage(req.query);
+    if (status == 400) {
+        res.status(status).send(result);
+    } else {
+        res.status(status).sendFile(result, {root: "src/data"});
+    }
 }

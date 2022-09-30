@@ -7,6 +7,11 @@ describe("getImage", () => {
             width: 1,
             height: 1
         }
-        expect(await getImage(query)).toBe("thumb/fjord.jpg");
+
+        const expectedResult = {
+            status: 200,
+            result: "thumb/fjord.jpg"
+        }
+        expect(await getImage(query)).toEqual(expectedResult);
     });
 })
