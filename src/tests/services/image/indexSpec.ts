@@ -8,5 +8,5 @@ describe("getImage", () => {
             height: 1
         }
         expect(await getImage(query)).toBe("thumb/fjord.jpg");
-    })
+    });
 })
