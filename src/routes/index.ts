@@ -1,8 +1,8 @@
 import express from "express";
-import {imageController} from "../controllers/image";
+import imageRouter from "./image";
 
 const router = express.Router();
 
-router.get("/", imageController);
+router.use("/api", imageRouter);
 
 export default router;
